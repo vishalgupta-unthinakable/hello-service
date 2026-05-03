@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    uses: vishalgupta-unthinakable/my-k8s-app/.github/workflows/build-and-deploy.yml@main
+    with:
+      image: vishalgupta827/hello-service
+      app-name: hello-service
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      MANIFEST_REPO_TOKEN: ${{ secrets.MANIFEST_REPO_TOKEN }}
